@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Heartlight Honeybee Emblem</title>
+<style>
+:root{--bg:#f6f5f1;--fg:#1a1814;--muted:#8a867c;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#141310;--fg:#f1eee6;--muted:#7d7a70}}
+:root[data-theme="dark"]{--bg:#141310;--fg:#f1eee6;--muted:#7d7a70}
+html,body{height:100%;margin:0}
+body{background:var(--bg);color:var(--fg);font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px}
+.stage{width:min(90vw,760px);aspect-ratio:1560/1020;background:transparent}
+svg{width:100%;height:100%;display:block;overflow:hidden;border-radius:20px;transform-origin:50% 50%}
+.stage.out svg{opacity:0;transform:scale(.94);transition:opacity .6s cubic-bezier(.4,0,.2,1),transform .6s cubic-bezier(.4,0,.2,1)}
+button{font:500 13px/1 inherit;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);background:none;border:1px solid color-mix(in srgb,var(--muted) 40%,transparent);border-radius:999px;padding:11px 20px;cursor:pointer;transition:color .2s,border-color .2s}
+button:hover{color:var(--fg);border-color:var(--fg)}
+
+svg *{--e:cubic-bezier(.22,1,.36,1)}
+.ln{stroke:#111;stroke-width:14;stroke-linecap:round;stroke-linejoin:round}
+
+/* ---------- INTRO BUILD (0 – 2.1s) ---------- */
+.draw{stroke-dasharray:1;stroke-dashoffset:1;animation:draw var(--t,.6s) var(--e) var(--d,0s) forwards}
+.fill{fill-opacity:0;animation:fillin .35s ease-out calc(var(--d,0s) + var(--t,.6s)*.55) forwards}
+.pop{opacity:0;transform-box:fill-box;transform-origin:center;animation:pop .6s var(--e) var(--d,0s) forwards}
+.hex{opacity:0;transform-origin:770px 570px;animation:hex .55s var(--e) forwards}
+.wing{opacity:0;transform-origin:680px 460px;animation:wing .55s var(--e) var(--d) forwards}
+.ring{opacity:0;animation:ring .4s var(--e) var(--d) forwards}
+.shine{opacity:0;animation:fade .4s ease-out var(--d) forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes fillin{to{fill-opacity:1}}
+@keyframes pop{0%{opacity:0;transform:scale(.55)}60%{opacity:1;transform:scale(1.07)}100%{opacity:1;transform:scale(1)}}
+@keyframes hex{from{opacity:0;transform:scale(.82) rotate(-8deg)}to{opacity:1;transform:none}}
+@keyframes wing{from{opacity:0;transform:scale(.3) rotate(14deg)}to{opacity:1;transform:none}}
+@keyframes ring{from{opacity:0;transform:translateY(-22px)}to{opacity:1;transform:none}}
+@keyframes fade{to{opacity:1}}
+
+/* ---------- ALIVE LOOP (from 2.0s, forever) ---------- */
+.breathe{transform-origin:770px 570px;animation:breathe 3.2s ease-in-out 1s infinite alternate}
+.bob{animation:bob 1.5s ease-in-out 2s infinite alternate}
+.flap{transform-origin:680px 460px;animation:flap .22s ease-in-out 2s infinite alternate}
+.flap.r{animation-delay:2.03s}
+.sway{animation:sway 1.8s ease-in-out 2s infinite alternate}
+.sway.a{transform-origin:733px 245px}
+.sway.b{transform-origin:807px 245px;animation-delay:2.25s}
+.beat{transform-origin:768px 710px;animation:beat 1.3s ease-in-out 2.1s infinite}
+.glow{opacity:0;animation:glow 1.3s ease-out 2.1s infinite}
+.pulse{opacity:0;transform-origin:768px 710px;animation:pulse 1.3s ease-out 2.1s infinite}
+@keyframes breathe{to{transform:scale(1.035)}}
+@keyframes bob{from{transform:translateY(8px)}to{transform:translateY(-14px)}}
+@keyframes flap{from{transform:rotate(-5deg) scaleY(1)}to{transform:rotate(9deg) scaleY(.93)}}
+@keyframes sway{from{transform:rotate(-3.5deg)}to{transform:rotate(3.5deg)}}
+@keyframes beat{0%,100%{transform:scale(1)}14%{transform:scale(1.12)}28%{transform:scale(1)}42%{transform:scale(1.07)}70%{transform:scale(1)}}
+@keyframes glow{0%{opacity:0}14%{opacity:1}60%,100%{opacity:0}}
+@keyframes pulse{0%{opacity:.55;transform:scale(.35)}100%{opacity:0;transform:scale(1)}}
+</style>
+</head>
+<body>
+<div class="stage" id="stage"></div>
+<button id="replay" type="button">Replay</button>
+
+<script>
+const wing = (d, side) => `
+  <g class="flap ${side}">
+    <g class="wing" style="--d:${d}s">
+      <path class="ln draw fill" pathLength="1" style="--t:.5s;--d:${d}s" fill="#E0E0DD"
+        d="M680 440C640 380 520 300 380 270C260 265 195 320 195 400C200 500 330 565 480 570C580 570 650 540 675 480Z"/>
+      <path class="shine" style="--d:${d + .35}s" fill="none" stroke="#f7f7f7" stroke-width="18" stroke-linecap="round" d="M415 316Q520 330 585 390"/>
+    </g>
+  </g>`;
+
+const BULB = "M705 385C690 400 688 440 690 460C685 500 650 520 615 545C560 590 545 650 545 700C545 830 640 915 770 915C900 915 995 830 995 700C995 650 980 590 925 540C890 520 855 500 858 460C860 440 858 400 840 385Z";
+
+const markup = () => `
+<svg viewBox="0 0 1560 1020" role="img" aria-label="Heartlight honeybee emblem">
+  <defs>
+    <radialGradient id="g" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#FF2323" stop-opacity=".45"/>
+      <stop offset="1" stop-color="#FF2323" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="bc"><path d="${BULB}"/></clipPath>
+  </defs>
+
+  <g class="breathe"><polygon class="hex" fill="#F9B41C" points="535,188 1010,188 1215,587 997,950 541,950 326,590"/></g>
+
+  <g class="bob">
+    ${wing(.75, 'l')}
+    <g transform="translate(1540 0) scale(-1 1)">${wing(.85, 'r')}</g>
+
+    <path class="ln draw fill" pathLength="1" style="--t:.7s;--d:.2s" fill="#FAF9F5" d="${BULB}"/>
+    <path class="ln draw" pathLength="1" style="--t:.4s;--d:.8s" fill="none" d="M727 382L724 585L700 612"/>
+    <path class="ln draw" pathLength="1" style="--t:.4s;--d:.8s" fill="none" d="M813 382L816 585L840 612"/>
+
+    <g clip-path="url(#bc)">
+      <circle class="glow" cx="768" cy="710" r="240" fill="url(#g)"/>
+      <circle class="pulse" cx="768" cy="710" r="230" fill="none" stroke="#FF2323" stroke-width="6"/>
+    </g>
+
+    <g class="ring" style="--d:.7s"><rect class="ln" x="683" y="328" width="175" height="40" rx="20" fill="#F9C93C"/></g>
+    <g class="ring" style="--d:.8s"><rect class="ln" x="688" y="285" width="164" height="37" rx="18" fill="#F9C93C"/></g>
+    <g class="ring" style="--d:.9s"><rect class="ln" x="700" y="250" width="140" height="30" rx="15" fill="#F9C93C"/></g>
+
+    <g class="sway a"><path class="ln draw" pathLength="1" style="--t:.55s;--d:1.1s" fill="none"
+      d="M733 245C740 150 720 80 650 75C600 70 575 130 610 155C640 170 660 150 655 130"/></g>
+    <g class="sway b"><path class="ln draw" pathLength="1" style="--t:.55s;--d:1.15s" fill="none"
+      d="M807 245C800 150 820 80 890 75C940 70 965 130 930 155C900 170 880 150 885 130"/></g>
+
+    <g class="beat"><path class="ln pop" style="--d:1.3s" fill="#FF2323"
+      d="M768 665C740 615 670 615 660 670C660 710 700 750 768 795C840 740 880 710 875 670C865 615 795 615 768 665Z"/></g>
+
+    <g fill="none" stroke="#111" stroke-width="10" stroke-linecap="round">
+      <path class="draw" pathLength="1" style="--t:.3s;--d:1.65s" d="M637 623Q615 655 628 692"/>
+      <path class="draw" pathLength="1" style="--t:.3s;--d:1.72s" d="M643 714Q650 735 667 751"/>
+      <path class="draw" pathLength="1" style="--t:.3s;--d:1.8s" d="M902 698Q885 740 844 773"/>
+    </g>
+  </g>
+</svg>`;
+
+const stage = document.getElementById('stage');
+// each run: build (2s) + alive loop, then fade out. Set RUNS = Infinity to loop forever.
+const RUNS = 3, LIVE = 5200, OUT = 650, GAP = 250;
+let timers = [];
+const later = (fn, ms) => timers.push(setTimeout(fn, ms));
+
+const run = (n) => {
+  stage.classList.remove('out');
+  stage.innerHTML = markup();
+  later(() => stage.classList.add('out'), LIVE);
+  if (n < RUNS) later(() => run(n + 1), LIVE + OUT + GAP);
+};
+
+const start = () => {
+  timers.forEach(clearTimeout); timers = [];
+  stage.classList.remove('out');
+  stage.innerHTML = '';
+  requestAnimationFrame(() => requestAnimationFrame(() => run(1)));
+};
+start();
+document.getElementById('replay').addEventListener('click', start);
+</script>
+</body>
+</html>

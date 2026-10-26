@@ -1,0 +1,11 @@
+import urllib.request
+
+svg = '''<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 28 32">
+  <path d="M10 2 C10 0.9 10.9 0 12 0 C13.1 0 14 0.9 14 2 L14 13 L15.5 13 C16.6 13 17.5 13.9 17.5 15 L17.5 16 C18.3 16 19 16.7 19 17.5 L19 19 C19.8 19 20.5 19.7 20.5 20.5 L20.5 24 C20.5 28.1 17.1 31.5 13 31.5 L10.5 31.5 C7.5 31.5 4.7 29.8 3.3 27.2 L0.8 22.3 C0.3 21.3 0.6 20.1 1.5 19.5 C2.4 18.9 3.6 19.2 4.2 20.1 L6 22.8 L6 8 C6 6.9 6.9 6 8 6 C9.1 6 10 6.9 10 8 Z" fill="#ffffff" stroke="#181818" stroke-width="1.8" stroke-linejoin="round"/>
+  <path d="M14 16 L14 21 M17.5 18 L17.5 22 M19 21 L19 24" stroke="#181818" stroke-width="1.4" stroke-linecap="round"/>
+</svg>'''
+
+with open('/home/user/hand.svg', 'w') as f:
+    f.write(svg)
+
+print("SVG written successfully")

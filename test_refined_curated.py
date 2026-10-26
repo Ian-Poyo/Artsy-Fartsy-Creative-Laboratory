@@ -1,0 +1,85 @@
+# Verify chapter data and color definitions
+chapters = [
+    {
+        "id": "funky-twist",
+        "index": "01",
+        "title": "Funky Twist",
+        "subtitle": "Creative Laboratory",
+        "badge": "AF™ 108",
+        "category": "A LAB FOR THE UNCONVENTIONAL",
+        "headline": "For ideas that refuse to stay inside the lines.",
+        "desc": "An experimental sanctuary where strange ideas take shape, materials are pushed to their breaking points, and creativity has no single direction.",
+        "tags": ["✦ Process-Based Discovery", "✦ Raw Pigments & Clay", "✦ Carmel Studio", "✦ All Skill Levels"],
+        "gradient": "linear-gradient(145deg, #090e1a 0%, #1a1e34 38%, #783818 72%, #d97706 100%)",
+        "glow": "rgba(217, 119, 6, 0.4)",
+        "sceneId": "scene-starry",
+        "modalId": "homeModal",
+        "topicIndex": 0
+    },
+    {
+        "id": "floating-studio",
+        "index": "02",
+        "title": "Floating Studio",
+        "subtitle": "Workshops & Atelier",
+        "badge": "AF™ 108",
+        "category": "CLASSES & SPECIAL WORKSHOPS",
+        "headline": "Weekly classes, adult workshops, and open atelier in Carmel.",
+        "desc": "Hands-on playful art exploration thoughtfully designed by educators to spark open-ended, process-based discovery across ceramics, printmaking, and glaze.",
+        "tags": ["✦ Wheel & Handbuilding", "✦ Specialty Glazing", "✦ Small Cohorts", "✦ Master Instructors"],
+        "gradient": "linear-gradient(145deg, #090e1a 0%, #20131b 38%, #883244 72%, #f43f5e 100%)",
+        "glow": "rgba(244, 63, 94, 0.4)",
+        "sceneId": "scene-classroom",
+        "modalId": "classesModal",
+        "topicIndex": 1
+    },
+    {
+        "id": "color-magic",
+        "index": "03",
+        "title": "Color Magic",
+        "subtitle": "Celebrations & Joy",
+        "badge": "AF™ 108",
+        "category": "UNFORGETTABLE CELEBRATIONS",
+        "headline": "Vibrant art parties dipped in joy, clay sculpting, and confetti.",
+        "desc": "Celebrate your milestone with personalized painting, tactile clay sculpting, and guided mess-making where every guest creates a keepsake.",
+        "tags": ["✦ Private Milestone Suites", "✦ Custom Color Palettes", "✦ Keepsake Artworks", "✦ Full Catering Support"],
+        "gradient": "linear-gradient(145deg, #090918 0%, #1e102e 38%, #6d28d9 72%, #ec4899 100%)",
+        "glow": "rgba(236, 72, 153, 0.4)",
+        "sceneId": "scene-birthday",
+        "modalId": "classesModal",
+        "topicIndex": 2
+    },
+    {
+        "id": "cloud-vision",
+        "index": "04",
+        "title": "Cloud Vision",
+        "subtitle": "Retreats & Innovation",
+        "badge": "AF™ 108",
+        "category": "COLLABORATIVE RETREATS",
+        "headline": "Inspiring collaborative workshops and vision sessions in the clouds.",
+        "desc": "Energize your organization with collaborative creative challenges designed to unlock breakthrough thinking, strategic clarity, and team synergy.",
+        "tags": ["✦ Executive Offsites", "✦ Creative Facilitation", "✦ Synergy Canvases", "✦ Catered Receptions"],
+        "gradient": "linear-gradient(145deg, #050b16 0%, #0b1e38 38%, #1d4ed8 72%, #38bdf8 100%)",
+        "glow": "rgba(56, 189, 248, 0.4)",
+        "sceneId": "scene-presentation",
+        "modalId": "foundationModal",
+        "topicIndex": 3
+    },
+    {
+        "id": "garden-twilight",
+        "index": "05",
+        "title": "Garden Twilight",
+        "subtitle": "Private Gatherings",
+        "badge": "AF™ 108",
+        "category": "PRIVATE PARTIES & EVENINGS",
+        "headline": "Intimate celebratory gatherings under sunlit canopies and twilight.",
+        "desc": "Tailored private evenings featuring guided art projects, lush floral settings, live music, and warm hospitality for your closest friends and family.",
+        "tags": ["✦ Secret Garden Setting", "✦ Candlelit Easels", "✦ Artisan Hors d'oeuvres", "✦ Twilight Ambience"],
+        "gradient": "linear-gradient(145deg, #050e09 0%, #0f2214 38%, #15803d 72%, #eab308 100%)",
+        "glow": "rgba(234, 179, 8, 0.4)",
+        "sceneId": "scene-party",
+        "modalId": "donateModal",
+        "topicIndex": 4
+    }
+]
+
+print("Chapters configured:", len(chapters))
